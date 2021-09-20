@@ -1,5 +1,7 @@
 ﻿@page "/categoria/add"
 @inject LojaContext loja
+@inject ISnackbar Snackbar
+@inject NavigationManager NavManager
 
 <MudContainer MaxWidth="MaxWidth.Large">
 <MudGrid Class="d-flex align-center justify-center ">
@@ -17,14 +19,19 @@
 </MudContainer>
 
 
-
-<div class="alert alert-success">@mensagem</div>
-
 @code {
 
     private string novaCategoria; 
     private string mensagem = "";
     
+    
+     void ChangePosition(string message, string position)
+    {
+        Snackbar.Clear();
+        Snackbar.Configuration.PositionClass = position;
+        Snackbar.Add(message, Severity.Success);
+    }
+
     private void Adicionar()
     {
         var categoria = new Categoria
@@ -33,8 +40,9 @@
         };
         loja.Categorias.Add(categoria);
         loja.SaveChanges();
-
-        mensagem = "Categoria adicionada";
+        ChangePosition("Categoria adicionada com sucesso!", Defaults.Classes.Position.TopRight);
+        NavManager.NavigateTo("/categoria/index");
     }
 
+   
 }
