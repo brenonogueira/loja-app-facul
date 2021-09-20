@@ -1,13 +1,22 @@
 ﻿@page "/categoria/add"
 @inject LojaContext loja
 
-<h3>Adicionar Categoria</h3>
-<p>
-    Categoria: <input type="text" @bind="novaCategoria"/>
-</p>
-<p>
-    <button class="btn btn-info" @onclick="Adicionar">Adicionar Categoria</button>
-</p>
+<MudContainer MaxWidth="MaxWidth.Large">
+<MudGrid Class="d-flex align-center justify-center ">
+
+          <MudItem xs="12">
+              <div>
+                  <MudText Typo="Typo.h5">Adicionar Categoria</MudText>
+              </div>
+              
+             <MudTextField @bind-Value="novaCategoria" Label="Adicionar Categoria" Variant="Variant.Outlined"></MudTextField>
+          </MudItem>
+              <MudButton @onclick="Adicionar" ButtonType="ButtonType.Submit" Variant="Variant.Filled" Style="background-color: #263238; color: #fff;"  Class=" mt-2 mb-6">Adicionar Categoria</MudButton>
+              
+</MudGrid>
+</MudContainer>
+
+
 
 <div class="alert alert-success">@mensagem</div>
 
