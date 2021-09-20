@@ -1,7 +1,31 @@
-﻿<MudNavMenu  Style="background-color: #455A64; color: #fff">
-    <MudNavLink Href="/index"><MudIcon Icon="@Icons.Filled.HomeFilled" Color="Color.Inherit" Style="margin-right: 10px"/>Início</MudNavLink>
-    <MudNavLink Href="/categoria/index"><MudIcon Icon="@Icons.Filled.ListAlt" Color="Color.Inherit" Style="margin-right: 10px"/>Categorias</MudNavLink>
-    <MudNavLink Href="/sobre"><MudIcon Icon="@Icons.Filled.MenuBook" Color="Color.Inherit" Style="margin-right: 10px"/>Sobre</MudNavLink>
+﻿
+<style type="text/css">
+
+    .menu {
+         background-color: #455A64; 
+         color: #fff;
+    }
+
+    .menu-item  {
+          margin-right: 10px;
+    }
+
+    .menu-item:hover {
+        background-color: #263238;
+        color: #000;
+    }
+
+    .texto { 
+        font-size: 14px;
+        color: #fff;
+    }
+
+</style>
+
+<MudNavMenu Class="menu" >
+    <MudNavLink  Icon="@Icons.Filled.HomeFilled" IconColor="Color.Inherit"  Class="menu-item" Href="/index"><span Class="texto">Início</span></MudNavLink>
+    <MudNavLink  Icon="@Icons.Filled.ListAlt" IconColor="Color.Inherit"  Class="menu-item" Href="/categoria/index"><span Class="texto">Categorias</span></MudNavLink>
+    <MudNavLink  Icon="@Icons.Filled.MenuBook" IconColor="Color.Inherit"Class="menu-item" Href="/sobre"><span Class="texto">Sobre</span></MudNavLink>
 </MudNavMenu>
 
 @code {

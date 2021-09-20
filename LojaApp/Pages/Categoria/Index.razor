@@ -3,17 +3,33 @@
 
 @inject LojaContext db;
 
+<style type="text/css">
+    .mud-table-head .header-centered th {
+        text-align: center;
+        background-color: #263238;
+        font-size: 1.2em;
+        color: #fff;
+    }
+
+   .mud-table-foot .bold-text .mud-table-cell {
+       font-weight: 500;
+   }
+</style>
+
 <MudContainer>
-    <MudText Typo="Typo.h5">Categorias</MudText>
-    <MudTable Items="@Categorias" Hover="true" Bordered="true" Striped="true" Filter="new Func<Categoria,bool>(FilterFunc1)" @bind-SelectedItem="selectedItem1">
-        <ToolBarContent>
+    <MudTable Items="@Categorias" Hover="true" Bordered="true" Striped="true" CustomHeader="true" Filter="new Func<Categoria,bool>(FilterFunc1)" @bind-SelectedItem="selectedItem1">
+         <ToolBarContent>
             <MudTextField @bind-Value="searchString1" Placeholder="Pesquisar categoria" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
         </ToolBarContent>
         <HeaderContent>
+            <MudTHeadRow IgnoreCheckbox="true" Class="header-centered">
+            <MudTh colspan="6" Style="color: #fff">Categorias</MudTh>
+        </MudTHeadRow>
             <MudTh><MudTableSortLabel SortBy="new Func<Categoria, object>(x=>x.Id)">Id</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<Categoria, object>(x=>x.Descricao)">Categoria</MudTableSortLabel></MudTh>
         </HeaderContent>
         <RowTemplate>
+
             <MudTd DataLabel="Nr">@context.Id</MudTd>
             <MudTd DataLabel="Sign">@context.Descricao</MudTd>
         </RowTemplate>
