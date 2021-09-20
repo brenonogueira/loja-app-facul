@@ -4,4 +4,8 @@
   Blazor é uma estrutura para a criação de interface do usuário da Web interativa do lado do cliente com o .NET
 </p>
 
+<p>
+  Uso da tecnologia C# 
+</p>
+
 
