@@ -39,37 +39,55 @@
               <div>
                   <MudText>Data de Nascimento</MudText>
               </div>
-              
-             <MudTextField @bind-Value="nascimento_cliente" Label="Nascimento" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+                <MudDatePicker @bind-Value="nascimento_cliente" PickerVariant="PickerVariant.Dialog" Variant="Variant.Outlined" Label="Nascimento"  DateFormat="dd/MM/yyyy" Date="@(new System.DateTime(2020,10,19))" />
           </MudItem>
                <MudItem xs="12">
               <div>
                   <MudText>Endereço</MudText>
               </div>
               
-             <MudTextField @bind-Value="endereco_cliente" Label="Nome" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+             <MudTextField @bind-Value="endereco_cliente" Label="Endereço" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
           </MudItem>
               <MudItem xs="4">
               <div>
                   <MudText>Escolaridade</MudText>
               </div>
-              
-             <MudTextField @bind-Value="escolaridade_cliente" Label="Escolaridade" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
-
+              <MudSelect @bind-Value="escolaridade_cliente" T="string" Label="Escolaridade" Variant="Variant.Outlined"  Margin="Margin.Dense">
+                  <MudSelectItem Value="@("Fundamental - Incompleto")" />
+                  <MudSelectItem Value="@("Fundamental - Completo")" />
+                  <MudSelectItem Value="@("Médio - Incompleto")" />
+                  <MudSelectItem Value="@("Médio - Completo")" />
+                  <MudSelectItem Value="@("Superior - Incompleto")" />
+                  <MudSelectItem Value="@("Superior - Completo")" />
+                  <MudSelectItem Value="@("Pós-graduação (Lato senso) - Incompleto")" />
+                  <MudSelectItem Value="@("Pós-graduação (Lato senso) - Completo")" />
+                  <MudSelectItem Value="@("Pós-graduação (Stricto sensu, nível mestrado) - Incompleto")" />
+                  <MudSelectItem Value="@("Pós-graduação (Stricto sensu, nível mestrado) - Completo")" />
+                  <MudSelectItem Value="@("Pós-graduação (Stricto sensu, nível doutor) - Incompleto")" />
+                  <MudSelectItem Value="@("Pós-graduação (Stricto sensu, nível doutor) - Completo")" />
+                </MudSelect>                
           </MudItem>
               <MudItem xs="4">
               <div>
                   <MudText>Estado Civil</MudText>
               </div>
-              
-             <MudTextField @bind-Value="estadocivil_cliente" Label="Estado Civil" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+               <MudSelect @bind-Value="estadocivil_cliente" T="string" Label="Sexo" Variant="Variant.Outlined"  Margin="Margin.Dense">
+                  <MudSelectItem Value="@("Solteiro(a)")" />
+                  <MudSelectItem Value="@("Casado(a)")" />
+                  <MudSelectItem Value="@("Divorciado (a)")" />
+                  <MudSelectItem Value="@("Viúvo (a)")" />
+                  <MudSelectItem Value="@("Separado judicialmente")" />
+                </MudSelect>
           </MudItem>
-          <MudItem xs="4">
-              <div>
-                  <MudText>Sexo</MudText>
-              </div>
-              
-             <MudTextField @bind-Value="sexo_cliente" Label="Sexo" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+         
+            <MudItem xs="4">
+               <div>
+                <MudText>Sexo</MudText>
+               </div>
+                <MudSelect @bind-Value="sexo_cliente" T="string" Label="Sexo" Variant="Variant.Outlined"  Margin="Margin.Dense">
+                  <MudSelectItem Value="@("Masculino")" />
+                  <MudSelectItem Value="@("Feminino")" />
+                </MudSelect>
           </MudItem>
            <MudItem  xs="12" Style="display: flex; justify-content: flex-end">
             
@@ -85,7 +103,7 @@
 @code {
 
     private string? nome_cliente; 
-    private int cpf_cliente; 
+    private string cpf_cliente; 
     private string? email_cliente; 
     private string? telefone_cliente; 
     private string? nascimento_cliente; 
@@ -108,7 +126,7 @@
         var cliente = new Cliente
         {
             nome = nome_cliente,
-            cpf = cpf_cliente,
+            Cpf = cpf_cliente,
             email = email_cliente,
             telefone = telefone_cliente,
             dataNascimento = nascimento_cliente,

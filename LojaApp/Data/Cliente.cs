@@ -9,8 +9,7 @@ public class Cliente
     [StringLength(255)]
     public string? nome { get; set; }
 
-    [StringLength(15)]
-    public int cpf { get; set; }
+    public string? Cpf { get; set; }
 
     [Required]
     public string? telefone { get; set; }

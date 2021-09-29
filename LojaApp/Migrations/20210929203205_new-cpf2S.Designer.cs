@@ -3,6 +3,7 @@ using System;
 using LojaApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LojaApp.Migrations
 {
     [DbContext(typeof(LojaContext))]
-    partial class LojaContextModelSnapshot : ModelSnapshot
+    [Migration("20210929203205_new-cpf2S")]
+    partial class newcpf2S
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.0-rc.1.21452.10");

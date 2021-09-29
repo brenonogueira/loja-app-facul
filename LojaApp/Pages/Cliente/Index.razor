@@ -27,7 +27,7 @@
         </MudTHeadRow>
             <MudTh><MudTableSortLabel SortBy="new Func<Cliente, object>(x=>x.id)">Id</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<Cliente, object>(x=>x.nome)">nome</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<Cliente, object>(x=>x.cpf)">cpf</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Cliente, object>(x=>x.Cpf)">cpf</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<Cliente, object>(x=>x.telefone)">telefone</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<Cliente, object>(x=>x.email)">e-mail</MudTableSortLabel></MudTh>
         </HeaderContent>
@@ -35,7 +35,7 @@
 
             <MudTd DataLabel="Nr">@context.id</MudTd>
             <MudTd DataLabel="Sign">@context.nome</MudTd>
-            <MudTd DataLabel="Sign">@context.cpf</MudTd>
+            <MudTd DataLabel="Sign">@context.Cpf</MudTd>
             <MudTd DataLabel="Sign">@context.telefone</MudTd>
             <MudTd DataLabel="Sign">@context.email</MudTd>
         </RowTemplate>
