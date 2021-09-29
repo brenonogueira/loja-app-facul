@@ -1,0 +1,128 @@
+﻿@page "/cliente/add"
+@inject LojaContext loja
+@inject ISnackbar Snackbar
+@inject NavigationManager NavManager
+
+<MudContainer MaxWidth="MaxWidth.Large">
+    <h3>Adicionar Cliente</h3><hr/>
+<MudGrid style="max-width: 1000px;">
+        
+          <MudItem xs="6">
+              <div>
+                  <MudText>Nome</MudText>
+              </div>
+              
+             <MudTextField @bind-Value="nome_cliente" Label="Nome" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+          </MudItem>  
+          <MudItem xs="6">
+              <div>
+                  <MudText>CPF</MudText>
+              </div>
+              
+             <MudTextField @bind-Value="cpf_cliente" Label="CPF" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+          </MudItem> 
+          <MudItem xs="12">
+              <div>
+                  <MudText >Telefone</MudText>
+              </div>
+              
+             <MudTextField @bind-Value="telefone_cliente" Label="Telefone" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+          </MudItem> 
+          <MudItem xs="12">
+              <div>
+                  <MudText>E-mail</MudText>
+              </div>
+              
+             <MudTextField @bind-Value="email_cliente" Label="E-mail" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+          </MudItem>  
+          <MudItem xs="12">
+              <div>
+                  <MudText>Data de Nascimento</MudText>
+              </div>
+              
+             <MudTextField @bind-Value="nascimento_cliente" Label="Nascimento" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+          </MudItem>
+               <MudItem xs="12">
+              <div>
+                  <MudText>Endereço</MudText>
+              </div>
+              
+             <MudTextField @bind-Value="endereco_cliente" Label="Nome" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+          </MudItem>
+              <MudItem xs="4">
+              <div>
+                  <MudText>Escolaridade</MudText>
+              </div>
+              
+             <MudTextField @bind-Value="escolaridade_cliente" Label="Escolaridade" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+
+          </MudItem>
+              <MudItem xs="4">
+              <div>
+                  <MudText>Estado Civil</MudText>
+              </div>
+              
+             <MudTextField @bind-Value="estadocivil_cliente" Label="Estado Civil" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+          </MudItem>
+          <MudItem xs="4">
+              <div>
+                  <MudText>Sexo</MudText>
+              </div>
+              
+             <MudTextField @bind-Value="sexo_cliente" Label="Sexo" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+          </MudItem>
+           <MudItem  xs="12" Style="display: flex; justify-content: flex-end">
+            
+           <MudButton @onclick="Adicionar" ButtonType="ButtonType.Submit" Variant="Variant.Filled" Style="background-color: #263238; color: #fff;"  Class=" mt-2 mb-6">Adicionar</MudButton>
+          </MudItem>
+              
+
+              
+</MudGrid>
+</MudContainer>
+
+
+@code {
+
+    private string? nome_cliente; 
+    private int cpf_cliente; 
+    private string? email_cliente; 
+    private string? telefone_cliente; 
+    private string? nascimento_cliente; 
+    private string? sexo_cliente; 
+    private string? endereco_cliente; 
+    private string? escolaridade_cliente; 
+    private string? estadocivil_cliente; 
+    private string mensagem = "";
+    
+    
+     void ChangePosition(string message, string position)
+    {
+        Snackbar.Clear();
+        Snackbar.Configuration.PositionClass = position;
+        Snackbar.Add(message, Severity.Success);
+    }
+
+    private void Adicionar()
+    {
+        var cliente = new Cliente
+        {
+            nome = nome_cliente,
+            cpf = cpf_cliente,
+            email = email_cliente,
+            telefone = telefone_cliente,
+            dataNascimento = nascimento_cliente,
+            sexo = sexo_cliente,
+            Endereço = endereco_cliente,
+            escolaridade = escolaridade_cliente,
+            estadoCivil = estadocivil_cliente
+            
+        };
+        loja.Clientes.Add(cliente);
+        loja.SaveChanges();
+        ChangePosition("Cliente adicionado com sucesso!", Defaults.Classes.Position.TopRight);
+        NavManager.NavigateTo("/cliente/index");
+    }
+
+   
+}

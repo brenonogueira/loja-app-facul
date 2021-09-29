@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Cliente\" />
     <Folder Include="Pages\Produto\" />
     <Folder Include="Properties\ServiceDependencies\" />
   </ItemGroup>

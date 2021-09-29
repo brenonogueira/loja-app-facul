@@ -1,0 +1,72 @@
+﻿@page "/cliente/index"
+@page "/cliente"
+
+@inject LojaContext db;
+
+<style type="text/css">
+    .mud-table-head .header-centered th {
+        text-align: center;
+        background-color: #263238;
+        font-size: 1.2em;
+        color: #fff;
+    }
+
+   .mud-table-foot .bold-text .mud-table-cell {
+       font-weight: 500;
+   }
+</style>
+
+<MudContainer>
+    <MudTable Items="@Clientes" Hover="true" Bordered="true" Striped="true" CustomHeader="true" Filter="new Func<Cliente,bool>(FilterFunc1)" @bind-SelectedItem="selectedItem1">
+         <ToolBarContent>
+            <MudTextField @bind-Value="searchString1" Placeholder="Pesquisar Cliente" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+        </ToolBarContent>
+        <HeaderContent>
+            <MudTHeadRow IgnoreCheckbox="true" Class="header-centered">
+            <MudTh colspan="6" Style="color: #fff">Clientes</MudTh>
+        </MudTHeadRow>
+            <MudTh><MudTableSortLabel SortBy="new Func<Cliente, object>(x=>x.id)">Id</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Cliente, object>(x=>x.nome)">nome</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Cliente, object>(x=>x.cpf)">cpf</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Cliente, object>(x=>x.telefone)">telefone</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Cliente, object>(x=>x.email)">e-mail</MudTableSortLabel></MudTh>
+        </HeaderContent>
+        <RowTemplate>
+
+            <MudTd DataLabel="Nr">@context.id</MudTd>
+            <MudTd DataLabel="Sign">@context.nome</MudTd>
+            <MudTd DataLabel="Sign">@context.cpf</MudTd>
+            <MudTd DataLabel="Sign">@context.telefone</MudTd>
+            <MudTd DataLabel="Sign">@context.email</MudTd>
+        </RowTemplate>
+        <PagerContent>
+            <MudTablePager />
+        </PagerContent>
+    </MudTable>
+</MudContainer>
+
+@code {
+    private IEnumerable<Cliente> Clientes { get; set; }
+
+    private Cliente? selectedItem1 = null;
+
+    private string searchString1 = "";
+    private string searchString2 = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        Clientes = await db.Clientes.ToListAsync();
+    }
+
+    private bool FilterFunc1(Cliente cliente) => FilterFunc(cliente, searchString1);
+
+    private bool FilterFunc(Cliente cliente, string searchString)
+    {
+        if (string.IsNullOrWhiteSpace(searchString))
+            return true;
+        if (cliente.nome.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+        return false;
+    }
+
+}
